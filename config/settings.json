@@ -1,0 +1,183 @@
+{
+  "whisper": {
+    "model_size": "large-v3",
+    "device": "cpu",
+    "compute_type": "int8_float16",
+    "beam_size": 5,
+    "language": "en"
+  },
+  "audio": {
+    "sample_rate": 16000,
+    "channels": 1
+  },
+  "profiler": {
+    "top_words": 100,
+    "top_phrases": 30,
+    "top_patterns": 20,
+    "background_frequency_threshold": 0.15,
+    "high_energy_percentile": 80,
+    "repetition_thresholds": {
+      "weak": 2,
+      "medium": 3,
+      "strong": 4
+    },
+    "low_energy_patterns": [
+      "i think",
+      "i dont know",
+      "i don't know",
+      "maybe",
+      "we can",
+      "lets see",
+      "let's see",
+      "i guess",
+      "sort of",
+      "kind of",
+      "you know",
+      "i mean",
+      "basically",
+      "essentially",
+      "probably",
+      "i was",
+      "it was",
+      "there was",
+      "i just"
+    ],
+    "context_window": {
+      "pre_seconds": 5.0,
+      "post_seconds": 8.0
+    },
+    "stopwords": [
+      "the",
+      "a",
+      "an",
+      "and",
+      "or",
+      "but",
+      "in",
+      "on",
+      "at",
+      "to",
+      "for",
+      "of",
+      "with",
+      "is",
+      "it",
+      "i",
+      "you",
+      "he",
+      "she",
+      "we",
+      "they",
+      "this",
+      "that",
+      "was",
+      "are",
+      "be",
+      "been",
+      "have",
+      "has",
+      "do",
+      "did",
+      "will",
+      "would",
+      "could",
+      "should",
+      "just",
+      "so",
+      "up",
+      "like",
+      "get",
+      "got",
+      "um",
+      "uh",
+      "yeah",
+      "okay",
+      "ok"
+    ],
+    "slang_dictionary": {},
+    "hype_words": [
+      "no",
+      "what",
+      "bro",
+      "wait",
+      "nah",
+      "actually",
+      "insane",
+      "crazy",
+      "chat",
+      "yo",
+      "fr",
+      "ngl",
+      "aye",
+      "lets"
+    ],
+    "semantic_map": {}
+  },
+  "fetcher": {
+    "local_vod_dir": "",
+    "supported_extensions": [
+      ".mp4",
+      ".mkv",
+      ".mov",
+      ".avi",
+      ".flv",
+      ".webm"
+    ],
+    "yt_dlp_format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+    "yt_dlp_output_template": "%(title)s_%(id)s.%(ext)s"
+  },
+  "listener": {
+    "word_timestamps": true,
+    "min_segment_duration": 0.5,
+    "checkpoint_seconds": 600
+  },
+  "clip_engine": {
+    "selection_engine": "clip_engine",
+    "score_weights": {
+      "audio_spike": 0.25,
+      "explosion": 0.2,
+      "repetition": 0.2,
+      "profile_match": 0.15,
+      "face_reaction": 0.15,
+      "keyword_spike": 0.05
+    },
+    "highlight_threshold": 0.55,
+    "pre_roll_seconds": 10,
+    "post_roll_seconds": 40,
+    "face_detection_enabled": true,
+    "quality_classifier_enabled": true,
+    "quality_classifier_weight": 0.25,
+    "quality_min_keep": 0.35,
+    "vision_enabled": true,
+    "vision_model": "llava:7b",
+    "vision_frames_per_highlight": 6,
+    "speaker_id_enabled": true,
+    "speaker_id_target": "speaker",
+    "speaker_id_threshold": 0.75,
+    "speaker_boost": 0.15
+  },
+  "web": {
+    "host": "127.0.0.1",
+    "port": 5000
+  },
+  "logging": {
+    "level": "INFO"
+  },
+  "future_modules": {
+    "face_detection": {
+      "tool": "mediapipe",
+      "signals": [
+        "mouth_open",
+        "eyebrow_raise",
+        "smile",
+        "head_lean"
+      ],
+      "score_weight": 0.15
+    },
+    "chat_ocr": {
+      "tool": "tesseract",
+      "sample_rate_fps": 1,
+      "output": "data/chats/"
+    }
+  }
+}

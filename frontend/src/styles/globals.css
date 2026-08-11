@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .language-action {
+    @apply inline-flex items-center gap-2 whitespace-nowrap rounded-md border border-border/60 px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-45;
+  }
+
+  .language-input {
+    @apply premium-control w-full rounded-md border border-border/55 px-3 py-2 text-xs outline-none focus:border-primary/50;
+  }
+}
+
+@layer components {
+  .studio-input {
+    @apply w-full rounded-md border border-border/55 bg-black/20 px-2.5 py-2 text-xs text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/45 focus:ring-1 focus:ring-primary/25;
+  }
+  .editor-v2-tool {
+    @apply inline-flex h-7 min-w-7 items-center justify-center rounded border border-transparent text-slate-500 transition-colors hover:border-white/10 hover:bg-white/5 hover:text-slate-100;
+  }
+
+  .editor-v2-tool > svg,
+  .editor-v2-track-button > svg {
+    @apply h-3.5 w-3.5;
+  }
+
+  .editor-v2-track-button {
+    @apply grid h-6 w-6 place-items-center rounded text-slate-600 hover:bg-white/5 hover:text-slate-200;
+  }
+
+  .editor-v2-input {
+    @apply block h-7 w-full rounded border border-white/10 bg-black/30 px-2 text-[10px] text-slate-200 outline-none focus:border-cyan-400/60;
+  }
+
+  .editor-v2-action {
+    @apply inline-flex items-center justify-center gap-1 rounded border border-white/10 bg-white/[0.03] px-2 py-1.5 text-[9px] text-slate-400 hover:border-cyan-400/40 hover:text-cyan-300;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * InstaClip palette
+ *
+ * Built on shadcn's HSL variables. The doc forbids pure black backgrounds and
+ * pure white foregrounds (halation on astigmatism), so everything ranges
+ * between zinc-950 / 240-6-4 and zinc-200 / 240-5-84.
+ *
+ * Accent leans cool indigo to match Streamlabs-style cinematic feel.
+ * --------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    /* Light mode kept simple; we primarily ship dark. */
+    --background:           240 5% 99%;
+    --foreground:           240 6% 10%;
+    --card:                 240 5% 100%;
+    --card-foreground:      240 6% 10%;
+    --popover:              240 5% 100%;
+    --popover-foreground:   240 6% 10%;
+    --primary:              221 83% 53%;
+    --primary-foreground:   210 40% 98%;
+    --secondary:            240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted:                240 5% 96%;
+    --muted-foreground:     240 4% 46%;
+    --accent:               240 5% 96%;
+    --accent-foreground:    240 6% 10%;
+    --destructive:          0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success:              142 71% 45%;
+    --success-foreground:   0 0% 98%;
+    --warning:              38 92% 50%;
+    --warning-foreground:   0 0% 98%;
+    --border:               240 5% 90%;
+    --input:                240 5% 90%;
+    --ring:                 221 83% 53%;
+    --radius:               0.625rem;
+  }
+
+  .dark {
+    /* Premium low-glare graphite; not pure black, not pure white. */
+    --background:           228 16% 6%;
+    --foreground:           220 18% 88%;
+    --card:                 226 18% 10%;
+    --card-foreground:      240 5% 84%;
+    --popover:              226 20% 10%;
+    --popover-foreground:   240 5% 84%;
+    --primary:              188 88% 48%;
+    --primary-foreground:   228 18% 6%;
+    --secondary:            226 15% 15%;
+    --secondary-foreground: 240 5% 84%;
+    --muted:                226 14% 15%;
+    --muted-foreground:     220 12% 63%;
+    --accent:               212 23% 19%;
+    --accent-foreground:    220 18% 90%;
+    --destructive:          0 73% 56%;
+    --destructive-foreground: 0 0% 98%;
+    --success:              154 64% 45%;
+    --success-foreground:   228 18% 6%;
+    --warning:              41 91% 58%;
+    --warning-foreground:   0 0% 12%;
+    --border:               219 18% 20%;
+    --input:                222 18% 18%;
+    --ring:                 188 88% 48%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-width: 320px;
+    background:
+      linear-gradient(180deg, hsl(224 18% 9%) 0%, hsl(var(--background)) 42%, hsl(224 20% 5%) 100%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background-image:
+      linear-gradient(to right, hsl(220 22% 24% / 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(220 22% 24% / 0.10) 1px, transparent 1px),
+      linear-gradient(115deg, hsl(188 88% 48% / 0.16), transparent 34%, hsl(41 91% 58% / 0.08) 72%, transparent);
+    background-size: 56px 56px, 56px 56px, 100% 100%;
+    mask-image: linear-gradient(to bottom, black 0%, black 54%, transparent 100%);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.38;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    letter-spacing: 0;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  textarea,
+  select {
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.06),
+      0 8px 24px hsl(228 30% 2% / 0.12);
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+  textarea:focus,
+  select:focus {
+    border-color: hsl(var(--primary) / 0.48);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.08),
+      0 0 0 1px hsl(var(--primary) / 0.22),
+      0 12px 30px hsl(var(--primary) / 0.10);
+  }
+
+  /* Scrollbar tuning — match the dark surfaces, doc-style precision. */
+  ::-webkit-scrollbar         { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track   { background: transparent; }
+  ::-webkit-scrollbar-thumb   {
+    background: hsl(220 13% 36% / 0.55);
+    border: 2px solid transparent;
+    background-clip: content-box;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: hsl(188 70% 50% / 0.65); }
+}
+
+/* -----------------------------------------------------------------------------
+ * Liquid Glass / glassmorphism utility — applied to the sidebar + log drawer.
+ * Approximated via backdrop-filter; WebView2 supports it natively.
+ * --------------------------------------------------------------------------- */
+@layer utilities {
+  .app-shell {
+    background:
+      linear-gradient(180deg, hsl(222 18% 8% / 0.88), hsl(228 18% 6% / 0.96)),
+      hsl(var(--background));
+  }
+
+  .workspace-pane {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .workspace-pane::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 28px 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+      linear-gradient(135deg, hsl(188 88% 48% / 0.08), transparent 32%),
+      linear-gradient(315deg, hsl(41 91% 58% / 0.05), transparent 34%);
+  }
+
+  .glass {
+    background:
+      linear-gradient(180deg, hsl(220 28% 18% / 0.64), hsl(226 20% 10% / 0.72));
+    backdrop-filter: blur(20px) saturate(145%);
+    -webkit-backdrop-filter: blur(20px) saturate(145%);
+    border: 1px solid hsl(210 26% 75% / 0.12);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.10),
+      0 16px 48px hsl(228 30% 2% / 0.28);
+  }
+
+  .glass-strong {
+    background:
+      linear-gradient(180deg, hsl(222 24% 17% / 0.84), hsl(226 22% 9% / 0.90));
+    backdrop-filter: blur(30px) saturate(165%);
+    -webkit-backdrop-filter: blur(30px) saturate(165%);
+    border: 1px solid hsl(210 25% 74% / 0.15);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.12),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.22),
+      0 24px 70px hsl(228 32% 2% / 0.46);
+  }
+
+  .surface-1 {
+    background:
+      linear-gradient(180deg, hsl(222 21% 15% / 0.78), hsl(226 18% 10% / 0.82));
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.08),
+      0 14px 42px hsl(228 30% 2% / 0.22);
+  }
+
+  .surface-2 {
+    background:
+      linear-gradient(180deg, hsl(220 20% 17% / 0.72), hsl(226 18% 12% / 0.78));
+  }
+
+  .surface-3 {
+    background:
+      linear-gradient(180deg, hsl(216 22% 20% / 0.72), hsl(226 18% 13% / 0.84));
+  }
+
+  .premium-card {
+    position: relative;
+    border-color: hsl(210 24% 74% / 0.14);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.08),
+      0 18px 44px hsl(228 30% 2% / 0.22);
+  }
+
+  .premium-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(135deg, hsl(0 0% 100% / 0.08), transparent 30%),
+      linear-gradient(315deg, hsl(188 88% 48% / 0.07), transparent 42%);
+    opacity: 0.72;
+  }
+
+  .premium-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .premium-control {
+    background:
+      linear-gradient(180deg, hsl(220 20% 17% / 0.78), hsl(226 18% 12% / 0.88));
+    border: 1px solid hsl(210 24% 74% / 0.14);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.07);
+  }
+
+  .premium-control:hover {
+    border-color: hsl(var(--primary) / 0.38);
+    background:
+      linear-gradient(180deg, hsl(220 22% 19% / 0.84), hsl(226 18% 13% / 0.92));
+  }
+
+  .page-header {
+    background:
+      linear-gradient(180deg, hsl(224 18% 9% / 0.82), hsl(224 18% 8% / 0.48));
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: inset 0 -1px 0 hsl(210 24% 74% / 0.10);
+  }
+
+  .page-body-lux {
+    max-width: 1480px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .sidebar-shell {
+    box-shadow:
+      inset -1px 0 0 hsl(0 0% 100% / 0.06),
+      18px 0 60px hsl(228 30% 2% / 0.24);
+  }
+
+  .brand-mark {
+    background:
+      linear-gradient(135deg, hsl(var(--primary)), hsl(154 64% 48%) 58%, hsl(41 91% 58%));
+    box-shadow:
+      0 0 0 1px hsl(0 0% 100% / 0.20) inset,
+      0 12px 28px hsl(var(--primary) / 0.22);
+  }
+
+  .nav-item-active {
+    background:
+      linear-gradient(90deg, hsl(var(--primary) / 0.18), hsl(154 64% 45% / 0.07));
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.07),
+      inset 3px 0 0 hsl(var(--primary));
+  }
+
+  .modal-shell {
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.12),
+      0 40px 120px hsl(228 32% 2% / 0.72);
+  }
+
+  /* Keyboard-shortcut chip used in hints / subtitles. */
+  .kbd {
+    @apply inline-block px-1.5 py-0.5 mx-0.5 rounded border border-border/70
+           bg-secondary/70 text-[10px] font-mono text-foreground/80;
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.08);
+  }
+}

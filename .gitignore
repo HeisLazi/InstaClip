@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv-*/
+
+# Project junk (VERY IMPORTANT)
+data/
+output/
+logs/
+
+# Bundled ML models — multi-GB, fetched at build time (scripts/fetch_whisper_model.py).
+# NEVER commit these to git.
+models/
+
+# Environment files — may hold config/secrets. Commit *.example templates only.
+.env
+.env.*
+!.env.example
+!*.env.example
+
+# Credential material — defense in depth. Never commit keys, certs, or credential files.
+*credential*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Stray / scratch files (not part of the product)
+/import json.py
+/cargo_error.txt
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated release artifacts and tool caches
+build/
+dist/
+.wrangler/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+frontend/src-tauri/target/
+frontend/src-tauri/binaries/*.exe
+*.log
+
+# Test caches
+.pytest_cache/

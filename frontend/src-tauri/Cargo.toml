@@ -1,0 +1,28 @@
+[package]
+name = "instaclip"
+version = "0.1.0"
+description = "InstaClip — local-first auto-clipper"
+authors = ["InstaClip Contributors"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "instaclip_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+tauri          = { version = "2.0", features = [] }
+tauri-plugin-dialog = "2.0"
+tauri-plugin-shell  = "2.0"
+serde          = { version = "1", features = ["derive"] }
+serde_json     = "1"
+log            = "0.4"
+
+[features]
+# This feature is used for production builds where `devUrl` points to the
+# packaged frontend dist. See tauri.conf.json.
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

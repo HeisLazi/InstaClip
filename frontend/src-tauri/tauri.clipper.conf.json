@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "InstaClip Clipper Beta",
+  "version": "0.2.0",
+  "identifier": "com.instaclip.clipperbeta",
+  "build": {
+    "beforeBuildCommand": "npm run build:clipper"
+  },
+  "bundle": {
+    "targets": ["nsis"],
+    "externalBin": [
+      "binaries/instaclip-backend",
+      "binaries/ffmpeg",
+      "binaries/ffprobe"
+    ]
+  }
+}

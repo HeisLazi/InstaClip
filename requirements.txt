@@ -1,0 +1,42 @@
+# InstaClip public portfolio edition — Python dependencies
+#
+# This is the local-first clipper runtime. Cloud judge support is optional and
+# is enabled only when CLIPPER_GATEWAY_URL is configured; no local API keys are
+# required for normal operation.
+#
+# Python 3.12 is required specifically for mediapipe, which has no published
+# wheels for Python 3.13/3.14 at the time of writing.
+#
+# No optional extras are included in this public base requirements file.
+#
+# Install with:
+#     python3.12 -m venv .venv-public
+#     source .venv-public/bin/activate
+#     pip install -r requirements.txt
+#
+# For the CPU-only torch wheel (required by resemblyzer), install torch separately
+# from the CPU index so you do not pull the large CUDA build:
+#     pip install torch --index-url https://download.pytorch.org/whl/cpu
+# Then install resemblyzer without its pinned dependencies:
+#     pip install --no-deps resemblyzer
+
+faster-whisper
+librosa
+numpy
+ffmpeg-python
+yt-dlp
+fastapi
+uvicorn
+python-multipart
+mediapipe
+opencv-python
+scikit-learn
+joblib
+Pillow
+requests
+sounddevice
+soundfile
+torch
+resemblyzer
+SQLAlchemy>=2.0
+alembic>=1.13
