@@ -4,7 +4,7 @@
 
 ## What this repository is
 
-This is the **public portfolio edition** of a commercial product. It contains a coherent, runnable slice of the InstaClip core:
+This is the **public portfolio edition** of a commercial product. It contains a focused, runnable slice of the InstaClip core:
 
 - the ingest → transcribe → detect → cut pipeline,
 - the candidate review workflow (Clip Room),
@@ -13,7 +13,9 @@ This is the **public portfolio edition** of a commercial product. It contains a 
 
 **Owner-only surfaces are intentionally NOT included:** the Discord Clip Room bot, publishing (Instagram/TikTok/YouTube), Director chat / Creator OS, the cloud tester gateway, and release packaging are all part of the commercial edition and were removed for this publication.
 
-## MVP status vs production gaps
+The commercial edition remains private. No claim is made that this repo is a finished consumer product.
+
+## What is included
 
 | Public edition (this repo) | Commercial edition (private) |
 |---|---|
@@ -23,12 +25,6 @@ This is the **public portfolio edition** of a commercial product. It contains a 
 | SQLite job store with durable pipeline | Publishing to IG/TikTok/YouTube |
 | Frontend `npm test` + backend `pytest` suites | Five-tester acceptance gates on clean machines |
 | Vite build + Tauri shell scaffolding | Creator OS surfaces: Director chat, Memory UI, Stream Studio, Research Desk, Idea Bank |
-
-The commercial edition remains private. No claim is made that this repo is a finished consumer product.
-
-## Screenshots
-
-No screenshots are included in this edition. The UI can be run locally with the commands below.
 
 ## Workflow & feature summary
 
@@ -84,9 +80,9 @@ npm run dev          # Vite dev server on http://localhost:5173
 
 ```bash
 python -m pytest tests/ -q          # 261 passed, 1 warning (snapshot from verification)
-cd frontend && npm test -- --run  # 7 files, 127 passed
-npx tsc --noEmit                    # no errors
-npm run build:clipper              # Vite build + clipper bundle check passes
+cd frontend && npm test -- --run    # 7 files, 127 passed
+cd frontend && npx tsc --noEmit     # no errors
+cd frontend && npm run build:clipper # Vite build + clipper bundle check passes
 ```
 
 - Whisper model downloads on first use from HuggingFace.
@@ -105,11 +101,19 @@ See [`docs/PRIVACY_AND_SECURITY.md`](docs/PRIVACY_AND_SECURITY.md).
 
 ## Lazarus's responsibilities
 
-Lazarus (also `HeisLazi`) is the product owner of the commercial InstaClip project. This public edition is his portfolio artifact. He owns the private repository, licensing, and all commercial decisions about the product. The public edition was prepared by an opencode engineering manager delegating to subagents.
+Lazarus (also `HeisLazi`) is the product owner of the commercial InstaClip project. This public edition is his portfolio artifact. He owns the private repository, licensing, and all commercial decisions about the product.
+
+## Contribution & security
+
+Work is issue-driven and independently verified. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes, use the repository templates, and include reproducible evidence in every pull request.
+
+Do not publish private source, credentials, user content, licensed media, paid assets, or model prompts from the private MVP.
+
+Please follow [SECURITY.md](SECURITY.md) and report vulnerabilities privately rather than opening a public exploit report.
 
 ## AI-assistance disclosure
 
-This codebase was developed with heavy AI assistance. The private commercial repo uses a documented multi-agent workflow (Claude, Codex, Ollama, Antigravity roles per that repo's `AGENTS.md` operating contract). This public edition was prepared by an opencode engineering manager with subagents (exploration, extraction, testing, review). Every verification number in this repo was produced by actually running the commands; no results were fabricated.
+This codebase was developed with heavy AI assistance. The private commercial repo uses a documented multi-agent workflow. Every verification number in this repo was produced by actually running the commands; no results were fabricated.
 
 See [`docs/AI_ASSISTED_DEVELOPMENT.md`](docs/AI_ASSISTED_DEVELOPMENT.md).
 
@@ -132,4 +136,4 @@ See [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md).
 
 ## License
 
-No license has been chosen yet; all rights reserved pending an owner decision.
+No open-source license has been selected yet. Until a license is explicitly added, the repository contents remain all rights reserved.
